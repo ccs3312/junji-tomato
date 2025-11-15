@@ -1,0 +1,96 @@
+using System.Collections;
+using UnityEngine;
+
+public class playerController : MonoBehaviour
+{
+    //public Rigidbody2D rb;
+    public float spd;
+    public float spdmult;
+    public int[] coord = { 0, 0 }; //floor,room : stairs and hallways are floor,0
+    private bool doorcoll = false;
+    Door Door;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        //rb.bodyType = RigidbodyType2D.Kinematic;
+        StartCoroutine(DoorStep());
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            spdmult = 1.5f;
+        }
+        else
+        {
+            spdmult = 1f;
+        }
+        if (Input.GetKey(KeyCode.UpArrow))
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y + spd * spdmult * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.DownArrow))
+        {
+            transform.position = new Vector2(transform.position.x, transform.position.y - spd * spdmult * Time.deltaTime);
+        }
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            transform.position = new Vector2(transform.position.x - spd * spdmult * Time.deltaTime, transform.position.y);
+        }
+        if (Input.GetKey(KeyCode.RightArrow))
+        {
+            transform.position = new Vector2(transform.position.x + spd * spdmult * Time.deltaTime, transform.position.y);
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        
+        
+        if (collision.gameObject.CompareTag("Door")&&doorcoll == false)
+        {
+            Door = collision.gameObject.GetComponent<Door>();
+            doorcoll = true;
+            //StartCoroutine(DoorStep());
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(doorcoll == true)
+        {
+            doorcoll = false;
+            //StopCoroutine(DoorStep());
+        }
+        //doorcoll = false;
+    }
+    private IEnumerator DoorStep()
+    {
+        while (true)
+        {
+            //Debug.Log("AAAAAAAAA");
+            while (doorcoll == true)
+            {
+                //Debug.Log("the fuck isnt working");
+
+                /*if ()
+                {*/
+                if ((Input.GetKey(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.E))|| Input.GetKeyDown(KeyCode.E))
+                {
+                    Door.OpenDoor(0, "you");
+                    yield return new WaitForSeconds(0.2f);
+                    //yield break;
+                }
+                else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyDown(KeyCode.E))
+                {
+                    Door.OpenDoor(1, "you");
+                    yield return new WaitForSeconds(0.2f);
+                    //yield break;
+                }
+                //}
+                yield return null;
+            }
+            yield return null;
+        }
+    }
+}
