@@ -51,7 +51,7 @@ public class BotStateManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //Debug.Log("well shit");
-        currentstate.Collided(other);
+        currentstate.Collided(this, other);
     }
 
     /*private void FixedUpdate()
@@ -62,14 +62,17 @@ public class BotStateManager : MonoBehaviour
     {
         StopCoroutine(Timer());
         timer = 0;
+        Debug.Log("can somebody please fucking kill me");
+    }
+    public void StartTimer()
+    {
+        timer = 0;
+        Debug.Log("somebody please kill me fucking can");
         StartCoroutine(Timer());
     }
     public IEnumerator Timer()
     {
-        while (timer < 30)
-        {
             yield return new WaitForSeconds(1);
             timer += 1;
-        }
     }
 }

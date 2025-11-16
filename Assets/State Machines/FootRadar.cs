@@ -21,14 +21,15 @@ public class FootRadar : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            bsm.ResetTimer();
             bsm.SwitchState(chasestate);
         }
     }
-    private void OnTriggerStay2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            bsm.ResetTimer();
+            bsm.StartTimer();
             //bsm.SwitchState(chasestate);
         }
     }

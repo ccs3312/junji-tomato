@@ -13,5 +13,5 @@ public abstract class BotBaseState
 
     public abstract void EnterState(BotStateManager bsm);
     public abstract void UpdateState(BotStateManager bsm);
-    public abstract void Collided(Collider2D other);
+    public abstract void Collided(BotStateManager bsm,Collider2D other);
 }

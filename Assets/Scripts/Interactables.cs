@@ -7,9 +7,12 @@ public class Interactables : MonoBehaviour
     public Dialogue Dialogue;
     public Inventory Inventory;
     public string[] lines = { }; //{"character()expression()speech"}
+    public string[] altlines = { }; //open attempt unsuccessful.txt
     private bool started = false;
     private int i = 0; //
     public bool cancollect = false;
+    public bool locked = false;
+    public GameObject key = null;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -33,7 +36,22 @@ public class Interactables : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.E))
             {
                 Dialogue.gameObject.SetActive(true);
-                Dialogue.StartDialogue(lines);
+                if (locked == true)
+                {
+                    if (Inventory.CheckExisting(key))
+                    {
+                        Dialogue.StartDialogue(lines);
+                    }
+                    else
+                    {
+                        Dialogue.StartDialogue(altlines);
+                    }
+                }
+                else
+                {
+                    Dialogue.StartDialogue(lines);
+                }
+                
                 if(cancollect == true)
                 {
                     Inventory.AddItem(item);

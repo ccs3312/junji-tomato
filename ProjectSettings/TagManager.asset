@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Door
   - dbox
+  - Bound
   layers:
   - Default
   - TransparentFX
