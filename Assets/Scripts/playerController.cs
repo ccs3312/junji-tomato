@@ -6,26 +6,32 @@ public class playerController : MonoBehaviour
     //public Rigidbody2D rb;
     public float spd;
     public float spdmult;
-    public int[] coord = { 0, 0 }; //floor,room : stairs and hallways are floor,0
+    public int[] coord = { 1, 0 }; //floor,room : stairs and hallways are floor,0
     private bool doorcoll = false;
+    public Animator animator;
+    public Stamina Stamina;
     Door Door;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //rb.bodyType = RigidbodyType2D.Kinematic;
+        animator = GetComponent<Animator>();
         StartCoroutine(DoorStep());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && Stamina.stamina >= 3f)
         {
-            spdmult = 1.5f;
+            spdmult = 2f;
+            animator.SetBool("running", true);
+            Stamina.stamina -= 3f;
         }
         else
         {
             spdmult = 1f;
+            animator.SetBool("running", false);
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
@@ -38,10 +44,12 @@ public class playerController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position = new Vector2(transform.position.x - spd * spdmult * Time.deltaTime, transform.position.y);
+            animator.SetInteger("dir", -1);
         }
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.position = new Vector2(transform.position.x + spd * spdmult * Time.deltaTime, transform.position.y);
+            animator.SetInteger("dir", 1);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)

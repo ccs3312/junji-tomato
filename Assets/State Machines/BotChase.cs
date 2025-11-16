@@ -9,7 +9,8 @@ public class BotChase : BotBaseState
     private float dir=0;
     public override void EnterState(BotStateManager bsm)
     {
-        speed *= 1.5f;
+        speed *= 2f;
+        Debug.Log("please run please run please run");
     }
 
     public override void UpdateState(BotStateManager bsm)
@@ -28,7 +29,7 @@ public class BotChase : BotBaseState
     }
     public override void Collided(Collider2D other)
     {
-        Debug.Log("eat my shit");
+        //Debug.Log("eat my shit");
         if (other.gameObject.CompareTag("Door"))
         {
             Door = other.gameObject.GetComponent<Door>();

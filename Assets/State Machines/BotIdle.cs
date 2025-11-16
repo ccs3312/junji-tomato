@@ -17,7 +17,7 @@ public class BotIdle : BotBaseState
 
     public override void Collided(Collider2D other)
     {
-        Debug.Log("shit my elf");
+        //Debug.Log("shit my elf");
         if (other.gameObject.CompareTag("Door"))
         {
             doornot = Random.Range(0, 1);

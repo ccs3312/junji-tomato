@@ -54,7 +54,16 @@ public class Dialogue : MonoBehaviour
     IEnumerator TypeLine(string[] lines)
     {
         ln = lines[index].Split("()");
-        icon.sprite = iconlist[int.Parse(ln[1])];
+        if (int.Parse(ln[1]) >= iconlist.Length)
+        {
+            icon.sprite = null;
+            icon.color = Color.clear;
+        }
+        else
+        {
+            icon.sprite = iconlist[int.Parse(ln[1])];
+            icon.color = Color.white;
+        }
         if (ln.Length > 3)
         {
             descpic.sprite = dplist[int.Parse(ln[3])];

@@ -29,6 +29,7 @@ public class FootRadar : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             bsm.ResetTimer();
+            //bsm.SwitchState(chasestate);
         }
     }
 }
