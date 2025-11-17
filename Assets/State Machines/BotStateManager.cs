@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BotStateManager : MonoBehaviour
 {
@@ -15,10 +16,16 @@ public class BotStateManager : MonoBehaviour
     public Collider2D botHitbox;
     public Collider2D botEyesight;
     public Door Door;
+    public AudioSource spk;
+    public Animator animator;
+    //public AudioClip alert;
 
 
     private void Start()
     {
+        //animator = GetComponent<Animator>();
+        spk.PlayDelayed(3);
+        spk.enabled = false;
         currentstate = idlestate;
         currentstate.EnterState(this);
         currentstate.player = player;
@@ -29,12 +36,15 @@ public class BotStateManager : MonoBehaviour
         currentstate.botHitbox = botHitbox;
         currentstate.botEyesight = botEyesight;
         currentstate.Door = Door;
-        bot.position = new Vector2(0, -4);
+        bot.position = new Vector2(210, 140);
+        StartCoroutine(Timer());
 
     }
     private void Update()
     {
         currentstate.UpdateState(this);
+        //animator.SetFloat("dir",currentstate.dir);
+        //Debug.Log(currentstate.dir);
     }
     public void SwitchState(BotBaseState state)
     {
@@ -53,6 +63,21 @@ public class BotStateManager : MonoBehaviour
         //Debug.Log("well shit");
         currentstate.Collided(this, other);
     }
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            ResetTimer();
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(2);
+        }
+    }
 
     /*private void FixedUpdate()
     {
@@ -60,15 +85,8 @@ public class BotStateManager : MonoBehaviour
     }*/
     public void ResetTimer()
     {
-        StopCoroutine(Timer());
         timer = 0;
         Debug.Log("can somebody please fucking kill me");
-    }
-    public void StartTimer()
-    {
-        timer = 0;
-        Debug.Log("somebody please kill me fucking can");
-        StartCoroutine(Timer());
     }
     public IEnumerator Timer()
     {

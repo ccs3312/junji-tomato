@@ -11,7 +11,7 @@ public class Door : MonoBehaviour
         if(name == "bot")
         {
             bot.transform.position = dest[dir];
-            bot.GetComponent<BotBaseState>().coord = coord;
+            bot.GetComponent<BotStateManager>().coord = coord;
         }
         else if (name == "you")
         {

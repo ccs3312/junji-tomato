@@ -11,6 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/menu.unity
     guid: 552f1c6f8916c9548978658c876724f7
+  - enabled: 1
+    path: Assets/Scenes/Floor2Hallway.unity
+    guid: adc17e6c8737935409adbb78d56d92f6
+  - enabled: 1
+    path: Assets/Scenes/GameOver.unity
+    guid: 0765d07f60f4d854b8bac78eee937422
+  - enabled: 1
+    path: Assets/Scenes/GoodEnd.unity
+    guid: 20fd30d38691e1943a88f6a63cecfe6e
+  - enabled: 1
+    path: Assets/Scenes/Op.unity
+    guid: 2b06b03029c4f3f48a48a4b1a3fdf7df
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

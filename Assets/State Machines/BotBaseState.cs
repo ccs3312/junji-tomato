@@ -10,6 +10,7 @@ public abstract class BotBaseState
     public Collider2D botHitbox;
     public Collider2D botEyesight;
     public Door Door;
+    public float dir;
 
     public abstract void EnterState(BotStateManager bsm);
     public abstract void UpdateState(BotStateManager bsm);

@@ -22,34 +22,42 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && Stamina.stamina >= 3f)
+        if (Input.GetKey(KeyCode.LeftShift) && Stamina.stamina >= 2f)
         {
             spdmult = 2f;
             animator.SetBool("running", true);
-            Stamina.stamina -= 3f;
+            Stamina.stamina -= 2f;
         }
         else
         {
             spdmult = 1f;
             animator.SetBool("running", false);
         }
-        if (Input.GetKey(KeyCode.UpArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             transform.position = new Vector2(transform.position.x, transform.position.y + spd * spdmult * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             transform.position = new Vector2(transform.position.x, transform.position.y - spd * spdmult * Time.deltaTime);
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position = new Vector2(transform.position.x - spd * spdmult * Time.deltaTime, transform.position.y);
             animator.SetInteger("dir", -1);
         }
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.position = new Vector2(transform.position.x + spd * spdmult * Time.deltaTime, transform.position.y);
             animator.SetInteger("dir", 1);
+        }
+        if (Input.anyKey)
+        {
+            animator.SetBool("stand",false);
+        }
+        else
+        {
+            animator.SetBool("stand", true);
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -83,13 +91,13 @@ public class playerController : MonoBehaviour
 
                 /*if ()
                 {*/
-                if ((Input.GetKey(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.E))|| Input.GetKeyDown(KeyCode.E))
+                if ((Input.GetKey(KeyCode.UpArrow) && Input.GetKeyDown(KeyCode.E)))
                 {
                     Door.OpenDoor(0, "you");
                     yield return new WaitForSeconds(0.2f);
                     //yield break;
                 }
-                else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyDown(KeyCode.E))
+                else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.E))
                 {
                     Door.OpenDoor(1, "you");
                     yield return new WaitForSeconds(0.2f);

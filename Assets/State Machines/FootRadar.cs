@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FootRadar : MonoBehaviour
 {
-    public Collider2D foot;
+    /*public Collider2D foot;
     BotIdle idlestate = new BotIdle();
     public BotStateManager bsm;
     BotChase chasestate = new BotChase();
@@ -17,7 +17,7 @@ public class FootRadar : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -32,5 +32,5 @@ public class FootRadar : MonoBehaviour
             bsm.StartTimer();
             //bsm.SwitchState(chasestate);
         }
-    }
+    }*/
 }

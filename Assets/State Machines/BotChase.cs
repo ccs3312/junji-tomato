@@ -5,34 +5,45 @@ using UnityEngine;
 
 public class BotChase : BotBaseState
 {
-    BotIdle idlestate = new BotIdle();
-    private float dir=0;
+    //BotIdle idlestate = new BotIdle();
+    public float dir=0;
     public override void EnterState(BotStateManager bsm)
     {
-        speed = 4f;
+        bsm.spk.enabled = true;
+        speed = 30f;
         //bsm.ResetTimer();
         //Debug.Log("please run please run please run");
     }
 
     public override void UpdateState(BotStateManager bsm)
     {
-        Debug.Log("where r u??");
-        if (player.GetComponent<playerController>().coord == coord)
+        bsm.animator.SetFloat("dir", dir);
+        if (bsm.player.GetComponent<playerController>().coord[0] == bsm.coord[0])
         {
-            Debug.Log("found you.");
+            //Debug.Log("found you.");
             dir = ((player.transform.position.x - bot.position.x) / math.abs(player.transform.position.x - bot.position.x));
         }
-        bot.position = new Vector2(bot.position.x + dir * speed * Time.deltaTime, bot.position.y);
+        else
+        {
+            bsm.SwitchState(bsm.idlestate);
+            //Debug.Log(bsm.player.GetComponent<playerController>().coord[0]);
+            //Debug.Log(bsm.coord[0]);
+        }
+            bot.position = new Vector2(bot.position.x + dir * speed * Time.deltaTime, bot.position.y);
         /*if (bsm.timer >= 30)
         {
             Debug.Log("well shit");
-            bsm.SwitchState(idlestate);
+            bsm.SwitchState(bsm.idlestate);
         }*/
         bsm.bot.position = bot.position;
     }
     public override void Collided(BotStateManager bsm, Collider2D other)
     {
         //Debug.Log("eat my shit");
+        if (other.gameObject.CompareTag("Bound"))
+        {
+            dir *= -1;
+        }
         if (other.gameObject.CompareTag("Door"))
         {
             Door = other.gameObject.GetComponent<Door>();

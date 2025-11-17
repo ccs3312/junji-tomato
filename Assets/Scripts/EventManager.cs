@@ -16,7 +16,7 @@ public class EventManager : MonoBehaviour
     }
     public void ToStartScene ()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(4);
     }
 
     public void QuitGame()
