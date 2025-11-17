@@ -686,11 +686,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 84c17fe5-27b7-4631-9af1-5fd348ed0d7b
+  cloudProjectId: 7e4a6dc1-4f03-43b5-85cf-7a681d1d3e93
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: junji tomato
-  organizationId: paphadaspdk
+  projectName: AUTOMATONOPHOBIA
+  organizationId: ccs3312
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}

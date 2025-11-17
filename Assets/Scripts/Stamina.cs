@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Stamina : MonoBehaviour
 {
     public float stamina = 100;
-    public float regenspd = 10;
+    public float regenspd = 20;
     public Slider staminaSlider;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +18,7 @@ public class Stamina : MonoBehaviour
         staminaSlider.value = stamina/100;
         if(staminaSlider.value < 1)
         {
-            stamina += regenspd;
+            stamina += regenspd*Time.deltaTime;
         }
     }
 }

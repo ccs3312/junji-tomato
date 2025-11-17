@@ -22,11 +22,11 @@ public class playerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && Stamina.stamina >= 2f)
+        if (Input.GetKey(KeyCode.LeftShift) && Stamina.stamina >= 0f)
         {
             spdmult = 2f;
             animator.SetBool("running", true);
-            Stamina.stamina -= 2f;
+            Stamina.stamina -= 50f*Time.deltaTime;
         }
         else
         {
